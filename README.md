@@ -12,6 +12,7 @@ Este projeto foi desenvolvido como parte de um desafio técnico, com o objetivo 
 - **Validação de Dados**: Usa Bean Validation (`jakarta.validation`) para validar os dados de entrada nas requisições, garantindo integridade e segurança.
 - **Gestão de Dependências**: O Spring Boot é configurado com `@Autowired` para a injeção de dependências, facilitando a manutenção do código.
 - **Testes Unitários e Funcionais**: Inclui testes unitários com `@SpringBootTest` e testes funcionais realizados com o Thunder Client para verificar a integração com a API.
+- **Execução em Contêiner Docker**: O projeto pode ser executado em contêineres Docker, com a configuração de variáveis de ambiente para diferentes perfis (dev, test, prod).
 
 
 ## Estrutura do Projeto
@@ -49,6 +50,7 @@ dummyjson-client
 │       │       └── service
 │       │           └── ProductServiceTest.java
 │       └── resources
+├── Dockerfile
 └── pom.xml
 ```
 
@@ -58,6 +60,7 @@ dummyjson-client
 - WebClient: Utilizado para realizar chamadas HTTP assíncronas à API DummyJSON.
 - Spring Boot Test (@SpringBootTest): Usado para realizar testes de integração e garantir que os componentes estão funcionando corretamente.
 - Maven: Gerenciador de dependências e build automation.
+- Docker: Utilizado para empacotar a aplicação em contêineres e permitir a execução em qualquer ambiente com facilidade.
 
 
 ## Passos para Executar o Projeto
@@ -66,9 +69,10 @@ dummyjson-client
 
 - **Java 17**
 - **Maven 3.8.x**
+- **Docker** (para execução no contêiner)
 - **Dependências do projeto** (especificadas no pom.xml).
 
-### Executar a Aplicação
+### Executar a Aplicação Localmente
 
 1. Clone o repositório:
 
@@ -92,23 +96,43 @@ dummyjson-client
 
     A saúde do microsserviço pode ser verificada no endpoint `http://localhost:8080/actuator/health`.
 
+### Executar a Aplicação com Docker
 
-### Executar a Aplicação
+1. **Construa a imagem Docker:** Certifique-se de ter o Docker instalado e execute o seguinte comando na raiz do projeto:
 
-- **URL da API:** No arquivo `application.yaml`, você pode configurar o URL da API DummyJSON, caso queira rodar o projeto em outro ambiente.
+    ```bash
+    docker build -t dummyjson-client .
+    ```
 
-```bash
-api:
-  url: https://dummyjson.com
-```
+2. **Execute o contêiner:** Para rodar a aplicação com Docker, você pode passar a variável de ambiente SPRING_PROFILE para definir o perfil ativo (por exemplo test, dev, prod):
+
+    ```bash
+    docker run -e SPRING_PROFILE=local -p 8080:8080 dummyjson-client
+    ```
+
+3. Acesse a aplicação no navegador ou cliente HTTP: 
+O serviço estará disponível em `http://localhost:8080`.
+
+4. Verifique a disponibilidade do microsserviço:
+O health check pode ser acessado em `http://localhost:8080/actuator/health`.
+
+### Configuração do application.yaml
+
+- O arquivo `application.yaml` está configurado para trabalhar com diferentes perfis, e você pode ajustar o URL da API de acordo com o ambiente. Por exemplo:
+
+    ```bash
+    api:
+        url: https://dummyjson.com
+    ```
+- Quando estiver rodando com Docker, a variável de ambiente SPRING_PROFILE será usada para definir o perfil ativo.
 
 ### Executar Testes
 
 Para executar os testes unitários:
 
-```bash
-mvn clean test
-```
+    ```bash
+    mvn clean test
+    ```
 
 ### Testes Funcionais com Thunder Client
 Uma collection de requisições à API foi adicionada no projeto, usando o Thunder Client do VSCode. Para testar a API:
@@ -124,10 +148,15 @@ Uma collection de requisições à API foi adicionada no projeto, usando o Thund
 
 ### Para rodar em outro ambiente
 
-```bash
-mvn spring-boot:run -Dspring-boot.run.profiles=<nome-do-ambiente>
-```
+Para rodar a aplicação com um perfil específico em Docker:
 
-## Extras
+    ```bash
+    docker run -e SPRING_PROFILE=<nome-do-ambiente> -p 8080:8080 dummyjson-client
+    ```
 
-- Entregar o projeto em container será um diferencial.
+- Exemplo para o ambiente de produção:
+
+    ```bash
+    docker run -e SPRING_PROFILE=prod -p 8080:8080 dummyjson-client
+
+    ```
