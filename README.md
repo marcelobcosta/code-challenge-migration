@@ -31,8 +31,6 @@ dummyjson-client
 │   │   │       │   └── Product.java
 │   │   │       │   └── ProductResponse.java
 │   │   │       ├── service
-│   │   │       │   ├── health
-│   │   │       │   │   └── CustomHealthIndicator.java
 │   │   │       │   └── ProductService.java
 │   │   └── resources
 │   │       └── application.yaml
@@ -78,6 +76,10 @@ dummyjson-client
 
     O serviço estará disponível em `http://localhost:8080`.
 
+4. Verifique a disponibilidade do microsserviço:
+
+    Pode ser verificado no endereço `http://localhost:8080/actuator/health`.
+
 ### Executar Testes
 
 Para executar os testes unitários:
@@ -86,7 +88,7 @@ Para executar os testes unitários:
 mvn clean test
 ```
 
-Para executar na API, uma collection de chamadas a API foi adicionado no projeto, usando o Thunder Client do VSCode:
+Para testar funcionalmente a API, uma collection de requisições à API foi adicionado no projeto, usando o Thunder Client do VSCode:
 
 ![alt text](image.png)
 ![alt text](image-1.png)
@@ -107,7 +109,6 @@ mvn spring-boot:run -Dspring-boot.run.profiles=<nome-do-ambiente>
 3. Substituir os testes unitários feitos com `JUnit 4` e `Mockito` por testes de integração utilizando `@SpringBootTest`.
 4. Refatorar qualquer código depreciado ou incompatível.
 5. Garantir que todos os testes ainda passam após a migração.
-7. Adicionar no projeto um novo path `/health` que retorna a saude do microsserviço.
 
 ## Validação Sobre o Challenge
 
