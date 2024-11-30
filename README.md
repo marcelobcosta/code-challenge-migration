@@ -154,7 +154,7 @@ Para rodar a aplicação com um perfil específico em Docker:
     docker run -e SPRING_PROFILE=<nome-do-ambiente> -p 8080:8080 dummyjson-client
     ```
 
-- Exemplo para o ambiente de produção:
+Exemplo para o ambiente de produção:
 
     ```bash
     docker run -e SPRING_PROFILE=prod -p 8080:8080 dummyjson-client
