@@ -29,7 +29,10 @@ dummyjson-client
 │   │   │       │   └── ProductController.java
 │   │   │       ├── dto
 │   │   │       │   └── Product.java
+│   │   │       │   └── ProductResponse.java
 │   │   │       ├── service
+│   │   │       │   ├── health
+│   │   │       │   │   └── CustomHealthIndicator.java
 │   │   │       │   └── ProductService.java
 │   │   └── resources
 │   │       └── application.yaml
