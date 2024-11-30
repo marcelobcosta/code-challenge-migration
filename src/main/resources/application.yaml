@@ -1,2 +1,47 @@
 server:
   port: 8080
+
+spring:
+  profiles:
+    active: local
+api:
+  url: https://dummyjson.com
+
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+api:
+  url: https://dummyjson.com
+
+---
+spring:
+  config:
+    activate:
+      on-profile: test
+api:
+  url: https://dummyjson.com
+
+---
+spring:
+  config:
+    activate:
+      on-profile: prod
+api:
+  url: https://dummyjson.com
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info
+    livenessState:
+      enabled: true
+    readinessState:
+      enabled: true
+
+logging:
+  level:
+    org.springframework.web.reactive.function.client.WebClient: DEBUG
+    org.springframework.boot.actuate.health: DEBUG

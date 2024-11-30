@@ -4,6 +4,7 @@ import com.example.dummyjson.dto.Product;
 import com.example.dummyjson.dto.ProductResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
@@ -15,7 +16,8 @@ import java.util.List;
 @Service
 public class ProductService {
 
-    private final String BASE_URL = "https://dummyjson.com/products";
+    @Value("${api.url}")
+    private String baseUrl;
 
     @Autowired
     private WebClient webClient;
@@ -23,8 +25,9 @@ public class ProductService {
     // private static final Logger logger = LoggerFactory.getLogger(ProductService.class);
 
     public Mono<List<Product>> getAllProducts() {
+        String url = baseUrl + "/products" ;
         return webClient.get()
-                .uri(BASE_URL)
+                .uri(url) 
                 .retrieve()
                 .bodyToMono(ProductResponse.class)
                 .map(ProductResponse::getProducts)
@@ -35,7 +38,7 @@ public class ProductService {
 
     public Mono<Product> getProductById(Long id) {
         // logger.info("Fetching all products from the API...");
-        String url = BASE_URL + "/" + id;
+        String url = baseUrl + "/products/" + id;
         return webClient.get()
                 .uri(url)
                 .retrieve()
