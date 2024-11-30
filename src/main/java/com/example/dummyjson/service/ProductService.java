@@ -1,11 +1,16 @@
 package com.example.dummyjson.service;
 
 import com.example.dummyjson.dto.Product;
+import com.example.dummyjson.dto.ProductResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
-
+import reactor.core.publisher.Mono;
 import java.util.List;
+
+// import org.slf4j.Logger;
+// import org.slf4j.LoggerFactory;
 
 @Service
 public class ProductService {
@@ -15,23 +20,26 @@ public class ProductService {
     @Autowired
     private WebClient webClient;
 
-    public List<Product> getAllProducts() {
-        // Using WebClient to fetch all products
+    // private static final Logger logger = LoggerFactory.getLogger(ProductService.class);
+
+    public Mono<List<Product>> getAllProducts() {
         return webClient.get()
                 .uri(BASE_URL)
                 .retrieve()
-                .bodyToFlux(Product.class) // Converts response to a Flux<Product>
-                .collectList()             // Collects Flux<Product> into a List<Product>
-                .block();                  // Blocks the reactive chain and returns the result
+                .bodyToMono(ProductResponse.class)
+                .map(ProductResponse::getProducts)
+                // .doOnSuccess(products -> logger.info("Successfully received products: {}", products))
+                // .doOnError(error -> logger.error("Error fetching products", error));
     }
 
-    public Product getProductById(Long id) {
+    public Mono<Product> getProductById(Long id) {
+        // logger.info("Fetching all products from the API...");
         String url = BASE_URL + "/" + id;
-        // Using WebClient to fetch a product by ID
         return webClient.get()
                 .uri(url)
                 .retrieve()
-                .bodyToMono(Product.class) // Converts response to a Mono<Product>
-                .block();                  // Blocks and retrieves the Product
+                .bodyToMono(Product.class)
+                // .doOnSuccess(products -> logger.info("Received products: {}", products))
+                // .doOnError(error -> logger.error("Error fetching products", error));
     }
 }
