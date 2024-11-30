@@ -35,13 +35,7 @@ management:
   endpoints:
     web:
       exposure:
-        include: health, info
-    livenessState:
-      enabled: true
-    readinessState:
-      enabled: true
-
-logging:
-  level:
-    org.springframework.web.reactive.function.client.WebClient: DEBUG
-    org.springframework.boot.actuate.health: DEBUG
+        include: health
+  endpoint:
+    health:
+      show-details: always
