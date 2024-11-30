@@ -11,9 +11,8 @@ public class WebClientConfigTest {
     private WebTestClient webTestClient;
 
     public void testWebClientBean() {
-        // Verifique se o WebClient está inicializado e pode ser usado para fazer requisições
         webTestClient.get().uri("/some-endpoint")
                 .exchange()
-                .expectStatus().isOk(); // Ajuste conforme o comportamento esperado
+                .expectStatus().isOk(); 
     }
 }

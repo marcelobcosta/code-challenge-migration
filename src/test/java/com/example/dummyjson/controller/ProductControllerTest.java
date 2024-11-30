@@ -18,7 +18,6 @@ public class ProductControllerTest {
 
     @Test
     public void testGetAllProducts() {
-        // Usando TestRestTemplate para consumir a API
         ResponseEntity<Product[]> response = restTemplate.getForEntity("/api/products", Product[].class);
 
         assertEquals(200, response.getStatusCodeValue(), "Expected HTTP status 200");
@@ -28,7 +27,6 @@ public class ProductControllerTest {
 
     @Test
     public void testGetProductById() {
-        // Usando TestRestTemplate para consumir a API
         ResponseEntity<Product> response = restTemplate.getForEntity("/api/products/1", Product.class);
 
         assertEquals(200, response.getStatusCodeValue(), "Expected HTTP status 200");
