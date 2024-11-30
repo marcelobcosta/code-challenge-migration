@@ -1,31 +1,37 @@
 package com.example.dummyjson.dto;
 
-import org.junit.Assert;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.http.ResponseEntity;
+import org.springframework.util.Assert;
 
-import javax.validation.constraints.NotNull;
-
-@RunWith(MockitoJUnitRunner.class)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class ProductTest {
 
-    @Test
-    public void testGetAndSetter(){
-        Long expectId = 1L;
-        String expectedTitle = "A dummy title";
-        String expectedDescription = "A dummy description";
-        Double expectedPrice = new Double("2.1");
+    @Autowired
+    private TestRestTemplate restTemplate;
 
-        Product product1 = new Product();
-        product1.setId(1L);
-        product1.setTitle("A dummy title");
-        product1.setDescription("A dummy description");
-        product1.setPrice(new Double("2.1"));
+    public void testGetAndSetter() {
+        // Criando um produto para testar
+        Product expectedProduct = new Product();
+        expectedProduct.setId(1L);
+        expectedProduct.setTitle("A dummy title");
+        expectedProduct.setDescription("A dummy description");
+        expectedProduct.setPrice(2.1);
 
-        Assert.assertEquals(expectId, product1.getId());
-        Assert.assertEquals(expectedTitle, product1.getTitle());
-        Assert.assertEquals(expectedDescription, product1.getDescription());
-        Assert.assertEquals(expectedPrice, product1.getPrice());
+        // Usando TestRestTemplate para simular a requisição para o endpoint
+        ResponseEntity<Product> response = restTemplate.getForEntity("/api/products/1", Product.class);
+
+        // Verificando se o produto retornado é o esperado
+        Assert.isTrue(response.getStatusCodeValue() == 200, "Expected HTTP status 200");
+        Assert.notNull(response.getBody(), "Response body should not be null");
+
+        Product actualProduct = response.getBody();
+        Assert.notNull(actualProduct, "Product should not be null");
+        Assert.isTrue(expectedProduct.getId().equals(actualProduct.getId()), "ID should match");
+        Assert.isTrue(expectedProduct.getTitle().equals(actualProduct.getTitle()), "Title should match");
+        Assert.isTrue(expectedProduct.getDescription().equals(actualProduct.getDescription()), "Description should match");
+        Assert.isTrue(expectedProduct.getPrice().equals(actualProduct.getPrice()), "Price should match");
     }
 }
