@@ -1,5 +1,5 @@
 
-# DummyJSON Client - Java 8 e Spring Boot 2.x.x
+# DummyJSON Client - Java 17 e Spring Boot 3.2.5
 
 ## Descrição do Projeto
 
