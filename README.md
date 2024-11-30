@@ -101,6 +101,7 @@ dummyjson-client
 1. **Construa a imagem Docker:** Certifique-se de ter o Docker instalado e execute o seguinte comando na raiz do projeto:
 
     ```bash
+    mvn clean install
     docker build -t dummyjson-client .
     ```
 
