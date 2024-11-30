@@ -25,15 +25,16 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
+    // Endpoint to fetch all products
     @GetMapping
     public Mono<List<Product>> getAllProducts() {
-        return productService.getAllProducts()
+        return productService.getAllProducts();
                 // .doOnSubscribe(subscription -> logger.info("Fetching products..."))
                 // .doOnSuccess(products -> logger.info("Successfully received {} products", products.size()))
                 // .doOnError(error -> logger.error("Error occurred while fetching products: ", error))
-                ;
     }
 
+    // Endpoint to fetch a product by its ID
     @GetMapping("/{id}")
     public Mono<Product> getProductById(@PathVariable @NotNull Long id) {
         return productService.getProductById(id);

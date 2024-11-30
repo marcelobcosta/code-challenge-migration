@@ -5,7 +5,7 @@ import java.util.List;
 public class ProductResponse {
     private List<Product> products;
 
-    // Getter e Setter
+    // Getter and Setter for products list
     public List<Product> getProducts() {
         return products;
     }
@@ -14,6 +14,7 @@ public class ProductResponse {
         this.products = products;
     }
 
+    // String representation of the ProductResponse object
     @Override
     public String toString() {
         return "ProductResponse{" +

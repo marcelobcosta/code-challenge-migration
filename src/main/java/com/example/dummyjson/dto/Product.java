@@ -15,7 +15,7 @@ public class Product {
     @NotNull
     private Double price;
 
-    // Getters e Setters
+    // Getters and Setters
     public Long getId() {
         return id;
     }
@@ -48,6 +48,7 @@ public class Product {
         this.price = price;
     }
 
+    // String representation of the product
     @Override
     public String toString() {
         return "Product{id=" + id + ", title='" + title + "', price=" + price +  "'}";
