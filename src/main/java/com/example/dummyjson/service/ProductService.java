@@ -29,7 +29,8 @@ public class ProductService {
                 .bodyToMono(ProductResponse.class)
                 .map(ProductResponse::getProducts)
                 // .doOnSuccess(products -> logger.info("Successfully received products: {}", products))
-                // .doOnError(error -> logger.error("Error fetching products", error));
+                // .doOnError(error -> logger.error("Error fetching products", error))
+                ;
     }
 
     public Mono<Product> getProductById(Long id) {
@@ -40,6 +41,7 @@ public class ProductService {
                 .retrieve()
                 .bodyToMono(Product.class)
                 // .doOnSuccess(products -> logger.info("Received products: {}", products))
-                // .doOnError(error -> logger.error("Error fetching products", error));
+                // .doOnError(error -> logger.error("Error fetching products", error))
+                ;
     }
 }
