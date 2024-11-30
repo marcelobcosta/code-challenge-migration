@@ -142,10 +142,10 @@ Uma collection de requisições à API foi adicionada no projeto, usando o Thund
 - Importe a collection de requisições [DummyJson](thunder-collection_DummyJson.json).
 - Execute as requisições para testar os endpoints da API.
 
-![alt text](image.png)
-![alt text](image-1.png)
-![alt text](image-2.png)
-![alt text](image-3.png)
+![alt text](img/image.png)
+![alt text](img/image-1.png)
+![alt text](img/image-2.png)
+![alt text](emg/image-3.png)
 
 ### Para rodar em outro ambiente
 
