@@ -38,18 +38,17 @@ dummyjson-client
 │   │       └── application.yaml
 │   └── test
 │       ├── java
-│       │   ├── com.example.dummyjsonclient
-│       │   │    ├── config
-│       │   │    │   └── ValidationConfigTest.java
-│       │   │    │   └── WebClientConfigTest.java
-│       │   │    └── controller
-│       │   │    │   └── ProductControllerTest.java
-│       │   │    ├── dto
-│       │   │    │   └── ProductTest.java
-│       │   │    │   └── ProductResponseTest.java
-│       │   │    └── service
-│       │   │        └── ProductServiceTest.java
-│       └── resources
+│       │   └── com.example.dummyjsonclient
+│       │       ├── config
+│       │       │   └── ValidationConfigTest.java
+│       │       │   └── WebClientConfigTest.java
+│       │       ├── controller
+│       │       │   └── ProductControllerTest.java
+│       │       ├── dto
+│       │       │   └── ProductTest.java
+│       │       │   └── ProductResponseTest.java
+│       │       └── service
+│       │           └── ProductServiceTest.java
 ├── Dockerfile
 └── pom.xml
 ```
