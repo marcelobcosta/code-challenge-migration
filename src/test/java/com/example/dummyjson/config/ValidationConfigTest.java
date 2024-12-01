@@ -13,11 +13,9 @@ public class ValidationConfigTest {
 
     @Test
     public void testValidatorBean() {
-        // Criando a fábrica de validadores e o validador
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         Validator validator = factory.getValidator();
 
-        // Verificando se o validador não é nulo
         assertNotNull(validator, "Validator bean should not be null");
     }
 }

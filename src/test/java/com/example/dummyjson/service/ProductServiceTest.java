@@ -17,7 +17,6 @@ public class ProductServiceTest {
 
     @Test
     public void testGetAllProducts() {
-        // Act: Call the service method to get all products
         List<Product> products = productService.getAllProducts().block(); // Transform Mono<List<Product>> into List<Product>
 
         // Assert: Verify the results
