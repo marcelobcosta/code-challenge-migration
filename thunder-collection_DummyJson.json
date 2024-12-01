@@ -1,0 +1,59 @@
+{
+    "clientName": "Thunder Client",
+    "collectionName": "DummyJson",
+    "collectionId": "f84fab70-f7b7-4a82-a373-42f57762bb10",
+    "dateExported": "2024-11-30T04:46:43.026Z",
+    "version": "1.2",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "bf39779e-7f58-4274-a944-393c61563e05",
+            "colId": "f84fab70-f7b7-4a82-a373-42f57762bb10",
+            "containerId": "",
+            "name": "HEALTH",
+            "url": "http://localhost:8080/actuator/health",
+            "method": "GET",
+            "sortNum": 10000,
+            "created": "2024-11-30T04:42:59.724Z",
+            "modified": "2024-11-30T04:42:59.724Z",
+            "headers": []
+        },
+        {
+            "_id": "501c6698-584b-4a6c-80d6-c7aa64bcc411",
+            "colId": "f84fab70-f7b7-4a82-a373-42f57762bb10",
+            "containerId": "",
+            "name": "GET PRODUCT BY ID",
+            "url": "localhost:8080/api/products/1",
+            "method": "GET",
+            "sortNum": 20000,
+            "created": "2024-11-30T04:43:12.698Z",
+            "modified": "2024-11-30T04:43:12.698Z",
+            "headers": []
+        },
+        {
+            "_id": "534f8ff1-9cc5-4a9a-a2e3-c4c5312d2126",
+            "colId": "f84fab70-f7b7-4a82-a373-42f57762bb10",
+            "containerId": "",
+            "name": "https://dummyjson.com/products GET ALL",
+            "url": "https://dummyjson.com/products",
+            "method": "GET",
+            "sortNum": 30000,
+            "created": "2024-11-30T04:43:19.365Z",
+            "modified": "2024-11-30T04:43:19.365Z",
+            "headers": []
+        },
+        {
+            "_id": "e9b0a135-f596-4844-8475-27dad0ce24a0",
+            "colId": "f84fab70-f7b7-4a82-a373-42f57762bb10",
+            "containerId": "",
+            "name": "GET ALL PRODUCTS",
+            "url": "localhost:8080/api/products",
+            "method": "GET",
+            "sortNum": 40000,
+            "created": "2024-11-30T04:43:24.445Z",
+            "modified": "2024-11-30T04:43:24.445Z",
+            "headers": []
+        }
+    ],
+    "ref": "bm1fPx58NpHqr2UbiRuVIH8E1OSpP9WveKWT2Pwhc1DX6FgbHbcpRntDZOKVBZM6rp9gGITi4aYjsbWZSdacCQ"
+}

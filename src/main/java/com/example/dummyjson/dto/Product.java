@@ -1,28 +1,21 @@
 package com.example.dummyjson.dto;
 
-import javax.validation.Valid;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 
 public class Product {
 
     @NotNull
-    @Min(0L)
-    @Max(999L)
     private Long id;
 
     @NotNull
     private String title;
 
-    @NotNull
     private String description;
 
     @NotNull
     private Double price;
 
     // Getters and Setters
-
     public Long getId() {
         return id;
     }
@@ -53,5 +46,11 @@ public class Product {
 
     public void setPrice(Double price) {
         this.price = price;
+    }
+
+    // String representation of the product
+    @Override
+    public String toString() {
+        return "Product{id=" + id + ", title='" + title + "', price=" + price +  "'}";
     }
 }

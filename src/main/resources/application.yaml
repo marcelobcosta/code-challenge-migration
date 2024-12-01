@@ -1,2 +1,42 @@
 server:
   port: 8080
+
+spring:
+  profiles:
+    active: ${SPRING_PROFILE:dev}  
+
+api:
+  url: ${API_URL:https://dummyjson.com}
+
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+api:
+  url: ${API_URL:https://dummyjson.com}
+
+---
+spring:
+  config:
+    activate:
+      on-profile: test
+api:
+  url: ${API_URL:https://dummyjson.com}
+
+---
+spring:
+  config:
+    activate:
+      on-profile: prod
+api:
+  url: ${API_URL:https://dummyjson.com}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      show-details: always
