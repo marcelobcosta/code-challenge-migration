@@ -146,6 +146,7 @@ Uma collection de requisições à API foi adicionada no projeto, usando o Thund
 - Abra o Thunder Client no VSCode.
 - Importe a collection de requisições [DummyJson](thunder-collection_DummyJson.json).
 - Execute as requisições para testar os endpoints da API.
+- Alguns loggers úteis foram deixados comentados no Service e no Controller para facilitar debug
 
 ![alt text](img/image.png)
 ![alt text](img/image-1.png)
