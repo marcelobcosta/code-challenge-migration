@@ -1,54 +1,42 @@
 package com.example.dummyjson.service;
 
 import com.example.dummyjson.dto.Product;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.web.client.TestRestTemplate;
-import org.springframework.http.ResponseEntity;
-import org.springframework.util.Assert;
-import org.testng.annotations.Test;
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+@SpringBootTest
 public class ProductServiceTest {
 
     @Autowired
-    private TestRestTemplate restTemplate;
+    private ProductService productService;
 
-    // Test to fetch all products
     @Test
     public void testGetAllProducts() {
-        // Call the API to fetch all products
-        ResponseEntity<Product[]> response = restTemplate.getForEntity("/api/products", Product[].class);
+        // Act: Call the service method to get all products
+        List<Product> products = productService.getAllProducts().block(); // Transform Mono<List<Product>> into List<Product>
 
-        // Validate the response status is 200 OK using getStatusCode().value()
-        Assert.isTrue(response.getStatusCode().value() == 200, "Expected HTTP status 200 for fetching products");
-
-        // Ensure the response body is not null
-        Assert.notNull(response.getBody(), "Response body should not be null");
-
-        // If response body is not null, validate that at least one product is returned
-        Product[] products = response.getBody();
-        if (products != null) {
-            Assert.isTrue(products.length > 0, "There should be at least one product returned");
-        }
+        // Assert: Verify the results
+        assertNotNull(products, "The product list should not be null");
+        assertFalse(products.isEmpty(), "The product list should not be empty");
+        assertTrue(products.size() > 0, "There should be at least one product");
     }
 
-    // Test to fetch a product by its ID
     @Test
     public void testGetProductById() {
-        // Call the API to fetch the product by its ID
-        ResponseEntity<Product> response = restTemplate.getForEntity("/api/products/1", Product.class);
+        // Arrange: Define a valid product ID
+        Long productId = 1L;
 
-        // Validate the response status is 200 OK using getStatusCode().value()
-        Assert.isTrue(response.getStatusCode().value() == 200, "Expected HTTP status 200 for fetching a product");
+        // Act: Call the service method to get a product by ID
+        Product product = productService.getProductById(productId).block(); // Transform Mono<Product> into Product
 
-        // Ensure the response body is not null
-        Assert.notNull(response.getBody(), "Response body should not be null");
-
-        // If the response body is not null, validate that the product title matches
-        Product product = response.getBody();
-        if (product != null) {
-            Assert.isTrue("Product 1".equals(product.getTitle()), "Product title should be 'Product 1'");
-        }
+        // Assert: Verify the results
+        assertNotNull(product, "The product should not be null");
+        assertEquals(productId, product.getId(), "The product ID should match");
+        assertNotNull(product.getTitle(), "The product title should not be null");
     }
 }

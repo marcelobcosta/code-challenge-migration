@@ -1,20 +1,12 @@
 package com.example.dummyjson.dto;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.TestPropertySource;
-import org.testng.Assert;
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.Arrays;
 import java.util.List;
 
-@SpringBootTest
-@TestPropertySource(locations = "classpath:application-test.properties")
 public class ProductResponseTest {
-
-    @Autowired
-    private ProductResponse productResponse; // Autowire the ProductResponse for testing
 
     // Test the getter and setter for the products list
     @Test
@@ -35,11 +27,12 @@ public class ProductResponseTest {
         // Create a list of products
         List<Product> productList = Arrays.asList(product1, product2);
 
-        // Set the products in ProductResponse
+        // Create ProductResponse and set the products
+        ProductResponse productResponse = new ProductResponse();
         productResponse.setProducts(productList);
 
         // Verify that the getter returns the correct list
-        Assert.assertEquals(productResponse.getProducts(), productList, "The product list should match the set value");
+        assertEquals(productList, productResponse.getProducts(), "The product list should match the set value");
     }
 
     // Test the toString method
@@ -67,6 +60,6 @@ public class ProductResponseTest {
 
         // Verify that the toString method returns the correct string representation
         String expectedString = "ProductResponse{products=" + productList + "}";
-        Assert.assertEquals(productResponse.toString(), expectedString, "The toString method should return the correct string representation");
+        assertEquals(expectedString, productResponse.toString(), "The toString method should return the correct string representation");
     }
 }

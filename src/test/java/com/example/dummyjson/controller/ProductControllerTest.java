@@ -1,55 +1,56 @@
 package com.example.dummyjson.controller;
 
 import com.example.dummyjson.dto.Product;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.web.reactive.function.client.WebClient;
-import org.testng.annotations.Test;
+import com.example.dummyjson.service.ProductService;
 
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertNotNull;
+import reactor.core.publisher.Mono;
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+import static org.mockito.Mockito.when;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import java.util.Arrays;
+import java.util.List;
+import org.junit.jupiter.api.extension.ExtendWith;
+
+@ExtendWith(MockitoExtension.class) // Usando a extensão do Mockito com JUnit 5
 public class ProductControllerTest {
 
-    @Autowired
-    private WebClient webClient;  // Inject WebClient
+    @InjectMocks
+    private ProductController productController;
 
-    // Test to fetch all products
+    @Mock
+    private ProductService productService;
+
     @Test
     public void testGetAllProducts() {
-        // Send GET request and get response
-        Product[] products = webClient.get()
-                .uri("/api/products")
-                .retrieve()
-                .bodyToMono(Product[].class)
-                .block();  // Block to make it synchronous in test
+        Product product1 = new Product();
+        product1.setId(1L);
+        product1.setTitle("Product 1");
 
-        // Check if response is not null
-        assertNotNull(products, "Response body should not be null");
+        Product product2 = new Product();
+        product2.setId(2L);
+        product2.setTitle("Product 2");
 
-        // Check the expected number of products
-        if (products != null) {
-            assertEquals(2, products.length, "There should be at least two products returned");
-        }
+        List<Product> products = Arrays.asList(product1, product2);
+        when(productService.getAllProducts()).thenReturn(Mono.just(products)); // Retornando um Mono<List<Product>>
+
+        List<Product> result = productController.getAllProducts().block(); // Usando .block() para esperar o Mono retornar a lista
+        assertEquals(2, result.size()); // Verificando o tamanho da lista
+        assertEquals("Product 1", result.get(0).getTitle()); // Verificando o título do primeiro produto
     }
 
-    // Test to fetch a product by its ID
     @Test
     public void testGetProductById() {
-        // Send GET request and get product response
-        Product product = webClient.get()
-                .uri("/api/products/1")
-                .retrieve()
-                .bodyToMono(Product.class)
-                .block();  // Block to make it synchronous in test
+        Product product = new Product();
+        product.setId(1L);
+        product.setTitle("Product 1");
 
-        // Check if product is not null
-        assertNotNull(product, "Response body should not be null");
+        when(productService.getProductById(1L)).thenReturn(Mono.just(product)); // Retornando um Mono<Product>
 
-        // Verify product title
-        if (product != null) {
-            assertEquals("Product 1", product.getTitle(), "Product title should match");
-        }
+        Product result = productController.getProductById(1L).block(); // Usando .block() para esperar o Mono retornar o produto
+        assertEquals("Product 1", result.getTitle()); // Verificando o título do produto
     }
 }

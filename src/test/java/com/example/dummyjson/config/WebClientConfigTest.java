@@ -1,13 +1,14 @@
 package com.example.dummyjson.config;
 
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.reactive.server.WebTestClient;
-import org.testng.annotations.Test;
-
+import org.springframework.boot.test.autoconfigure.web.reactive.AutoConfigureWebTestClient;
 import static org.springframework.http.HttpStatus.OK;
 
-@SpringBootTest
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@AutoConfigureWebTestClient
 public class WebClientConfigTest {
 
     @Autowired

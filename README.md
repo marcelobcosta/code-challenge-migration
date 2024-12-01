@@ -38,17 +38,17 @@ dummyjson-client
 │   │       └── application.yaml
 │   └── test
 │       ├── java
-│       │   └── com.example.dummyjsonclient
-│       │       ├── config
-│       │       │   └── ValidationConfigTest.java
-│       │       │   └── WebClientConfigTest.java
-│       │       └── controller
-│       │       │   └── ProductControllerTest.java
-│       │       ├── dto
-│       │       │   └── ProductTest.java
-│       │       │   └── ProductResponseTest.java
-│       │       └── service
-│       │           └── ProductServiceTest.java
+│       │   ├── com.example.dummyjsonclient
+│       │   │    ├── config
+│       │   │    │   └── ValidationConfigTest.java
+│       │   │    │   └── WebClientConfigTest.java
+│       │   │    └── controller
+│       │   │    │   └── ProductControllerTest.java
+│       │   │    ├── dto
+│       │   │    │   └── ProductTest.java
+│       │   │    │   └── ProductResponseTest.java
+│       │   │    └── service
+│       │   │        └── ProductServiceTest.java
 │       └── resources
 ├── Dockerfile
 └── pom.xml
@@ -108,7 +108,7 @@ dummyjson-client
 2. **Execute o contêiner:** Para rodar a aplicação com Docker, você pode passar a variável de ambiente SPRING_PROFILE para definir o perfil ativo (por exemplo test, dev, prod):
 
     ```bash
-    docker run -e SPRING_PROFILE=local -p 8080:8080 dummyjson-client
+    docker run -e SPRING_PROFILE=dev -p 8080:8080 dummyjson-client
     ```
 
 3. Acesse a aplicação no navegador ou cliente HTTP: 
@@ -129,10 +129,16 @@ O health check pode ser acessado em `http://localhost:8080/actuator/health`.
 
 ### Executar Testes
 
-Para executar os testes unitários:
+Para executar os testes:
 
     ```bash
     mvn clean test
+    ```
+
+Para executar os testes de arquivos individualmente:
+
+     ```bash
+    mvn clean test -Dtest=<nome-do-arquivo-de-teste>
     ```
 
 ### Testes Funcionais com Thunder Client
