@@ -128,13 +128,13 @@ O health check pode ser acessado em `http://localhost:8080/actuator/health`.
 
 ### Executar Testes
 
-Para executar os testes:
+- Para executar os testes:
 
     ```bash
     mvn clean test
     ```
 
-Para executar os testes de arquivos individualmente:
+- Para executar os testes de arquivos individualmente:
 
      ```bash
     mvn clean test -Dtest=<nome-do-arquivo-de-teste>
@@ -154,13 +154,13 @@ Uma collection de requisições à API foi adicionada no projeto, usando o Thund
 
 ### Para rodar em outro ambiente
 
-Para rodar a aplicação com um perfil específico em Docker:
+- Para rodar a aplicação com um perfil específico em Docker:
 
     ```bash
     docker run -e SPRING_PROFILE=<nome-do-ambiente> -p 8080:8080 dummyjson-client
     ```
 
-Exemplo para o ambiente de produção:
+- Exemplo para o ambiente de produção:
 
     ```bash
     docker run -e SPRING_PROFILE=prod -p 8080:8080 dummyjson-client
