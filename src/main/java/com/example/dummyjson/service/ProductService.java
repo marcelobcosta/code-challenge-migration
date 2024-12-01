@@ -10,6 +10,9 @@ import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 import java.util.List;
 
+// import org.slf4j.Logger;
+// import org.slf4j.LoggerFactory;
+
 // Service class to handle product data
 @Service
 public class ProductService {

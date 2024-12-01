@@ -15,7 +15,7 @@ import java.util.Arrays;
 import java.util.List;
 import org.junit.jupiter.api.extension.ExtendWith;
 
-@ExtendWith(MockitoExtension.class) // Usando a extensão do Mockito com JUnit 5
+@ExtendWith(MockitoExtension.class)
 public class ProductControllerTest {
 
     @InjectMocks
@@ -35,11 +35,11 @@ public class ProductControllerTest {
         product2.setTitle("Product 2");
 
         List<Product> products = Arrays.asList(product1, product2);
-        when(productService.getAllProducts()).thenReturn(Mono.just(products)); // Retornando um Mono<List<Product>>
+        when(productService.getAllProducts()).thenReturn(Mono.just(products)); 
 
-        List<Product> result = productController.getAllProducts().block(); // Usando .block() para esperar o Mono retornar a lista
-        assertEquals(2, result.size()); // Verificando o tamanho da lista
-        assertEquals("Product 1", result.get(0).getTitle()); // Verificando o título do primeiro produto
+        List<Product> result = productController.getAllProducts().block(); 
+        assertEquals(2, result.size()); 
+        assertEquals("Product 1", result.get(0).getTitle()); 
     }
 
     @Test
@@ -48,9 +48,9 @@ public class ProductControllerTest {
         product.setId(1L);
         product.setTitle("Product 1");
 
-        when(productService.getProductById(1L)).thenReturn(Mono.just(product)); // Retornando um Mono<Product>
+        when(productService.getProductById(1L)).thenReturn(Mono.just(product)); 
 
-        Product result = productController.getProductById(1L).block(); // Usando .block() para esperar o Mono retornar o produto
-        assertEquals("Product 1", result.getTitle()); // Verificando o título do produto
+        Product result = productController.getProductById(1L).block(); 
+        assertEquals("Product 1", result.getTitle()); 
     }
 }
