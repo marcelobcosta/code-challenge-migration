@@ -28,6 +28,7 @@ dummyjson-client
 │   │   │       │   └── ValidationConfig.java
 │   │   │       │   └── WebClientConfig.java
 │   │   │       ├── controller
+│   │   │       │   └── HealthController.java
 │   │   │       │   └── ProductController.java
 │   │   │       ├── dto
 │   │   │       │   └── Product.java
@@ -43,6 +44,7 @@ dummyjson-client
 │       │       │   └── ValidationConfigTest.java
 │       │       │   └── WebClientConfigTest.java
 │       │       ├── controller
+│       │       │   └── HealthControllerTest.java
 │       │       │   └── ProductControllerTest.java
 │       │       ├── dto
 │       │       │   └── ProductTest.java
@@ -114,7 +116,7 @@ dummyjson-client
 O serviço estará disponível em `http://localhost:8080`.
 
 4. Verifique a disponibilidade do microsserviço:
-O health check pode ser acessado em `http://localhost:8080/actuator/health`.
+O health check pode ser acessado em `http://localhost:8080/health`.
 
 ### Configuração do application.yaml
 
