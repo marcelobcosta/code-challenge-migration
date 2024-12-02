@@ -1,21 +1,20 @@
 package com.example.dummyjson.config;
 
-import jakarta.validation.Validation;
 import jakarta.validation.Validator;
-import jakarta.validation.ValidatorFactory;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @SpringBootTest
-public class ValidationConfigTest {
+class ValidationConfigTest {
 
     @Test
-    public void testValidatorBean() {
-        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
-        Validator validator = factory.getValidator();
+    void testValidatorBeanCreation() {
+        ValidationConfig validationConfig = new ValidationConfig();
+        Validator validator = validationConfig.validator(); // Create Validator instance
 
-        assertNotNull(validator, "Validator bean should not be null");
+        assertNotNull(validator, "Validator should not be null");
+        // Additional tests can validate the functionality of the Validator
     }
 }
