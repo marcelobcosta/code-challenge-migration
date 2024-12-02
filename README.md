@@ -28,6 +28,7 @@ dummyjson-client
 │   │   │       │   └── ValidationConfig.java
 │   │   │       │   └── WebClientConfig.java
 │   │   │       ├── controller
+│   │   │       │   └── HealthController.java
 │   │   │       │   └── ProductController.java
 │   │   │       ├── dto
 │   │   │       │   └── Product.java
@@ -43,6 +44,7 @@ dummyjson-client
 │       │       │   └── ValidationConfigTest.java
 │       │       │   └── WebClientConfigTest.java
 │       │       ├── controller
+│       │       │   └── HealthControllerTest.java
 │       │       │   └── ProductControllerTest.java
 │       │       ├── dto
 │       │       │   └── ProductTest.java
@@ -113,9 +115,6 @@ dummyjson-client
 3. Acesse a aplicação no navegador ou cliente HTTP: 
 O serviço estará disponível em `http://localhost:8080`.
 
-4. Verifique a disponibilidade do microsserviço:
-O health check pode ser acessado em `http://localhost:8080/actuator/health`.
-
 ### Configuração do application.yaml
 
 - O arquivo `application.yaml` está configurado para trabalhar com diferentes perfis, e você pode ajustar o URL da API de acordo com o ambiente. Por exemplo:
@@ -167,3 +166,49 @@ Uma collection de requisições à API foi adicionada no projeto, usando o Thund
     docker run -e SPRING_PROFILE=prod -p 8080:8080 dummyjson-client
 
     ```
+
+### Endpoint de Saúde (`/health`)
+
+O endpoint `/health` fornece informações detalhadas sobre o estado da aplicação e dependências externas. Ele verifica o status de conectividade com a API DummyJSON, além de retornar métricas importantes sobre a aplicação.
+
+#### Exemplo de Resposta
+```json
+{
+  "memory": {
+    "usedMemory": 37558208,
+    "freeMemory": 25356352,
+    "totalMemory": 62914560
+  },
+  "system": {
+    "architecture": "aarch64",
+    "javaVersion": "17.0.2",
+    "os": "Linux"
+  },
+  "externalApi": {
+    "status": "UP"
+  },
+  "version": "1.0.0",
+  "status": "UP",
+  "uptime": "PT7.07S",
+  "timestamp": "2024-12-02T05:48:07.114881971Z"
+}
+```
+
+#### Campos Retornados
+- **`memory`**: Informações sobre o uso de memória da JVM:
+  - `usedMemory`: Memória atualmente em uso.
+  - `freeMemory`: Memória disponível.
+  - `totalMemory`: Memória total alocada para a JVM.
+- **`system`**: Informações sobre o ambiente do sistema:
+  - `os`: Sistema operacional.
+  - `architecture`: Arquitetura do processador.
+  - `javaVersion`: Versão do Java em execução.
+- **`externalApi`**: Estado da API DummyJSON.
+  - `status`: Status da conectividade com a API externa (`UP` ou `DOWN`).
+- **`version`**: Versão atual da aplicação.
+- **`status`**: Status geral da aplicação (`UP` ou `DOWN`).
+- **`uptime`**: Tempo de execução da aplicação desde o início.
+- **`timestamp`**: Data e hora da última verificação de saúde.
+
+
+Este endpoint ajuda a monitorar a saúde da aplicação em tempo real e pode ser integrado com ferramentas de observabilidade como Prometheus ou Grafana.
