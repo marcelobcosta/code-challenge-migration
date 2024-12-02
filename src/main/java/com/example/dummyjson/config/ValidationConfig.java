@@ -12,7 +12,10 @@ public class ValidationConfig {
     // Bean for Validator creation
     @Bean
     public Validator validator() {
-        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();  // Create ValidatorFactory
-        return factory.getValidator();  // Return Validator instance
+        try (ValidatorFactory factory = Validation.buildDefaultValidatorFactory()) {
+            return factory.getValidator(); // Return Validator instance
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to create Validator instance", e);
+        }
     }
 }
