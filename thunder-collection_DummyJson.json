@@ -2,7 +2,7 @@
     "clientName": "Thunder Client",
     "collectionName": "DummyJson",
     "collectionId": "f84fab70-f7b7-4a82-a373-42f57762bb10",
-    "dateExported": "2024-11-30T04:46:43.026Z",
+    "dateExported": "2024-12-02T04:54:21.854Z",
     "version": "1.2",
     "folders": [],
     "requests": [
@@ -11,11 +11,11 @@
             "colId": "f84fab70-f7b7-4a82-a373-42f57762bb10",
             "containerId": "",
             "name": "HEALTH",
-            "url": "http://localhost:8080/actuator/health",
+            "url": "http://localhost:8080/health",
             "method": "GET",
             "sortNum": 10000,
             "created": "2024-11-30T04:42:59.724Z",
-            "modified": "2024-11-30T04:42:59.724Z",
+            "modified": "2024-12-02T04:53:57.172Z",
             "headers": []
         },
         {
@@ -55,5 +55,5 @@
             "headers": []
         }
     ],
-    "ref": "bm1fPx58NpHqr2UbiRuVIH8E1OSpP9WveKWT2Pwhc1DX6FgbHbcpRntDZOKVBZM6rp9gGITi4aYjsbWZSdacCQ"
+    "ref": "bm1fPx58NpHqr2UbiRuVIFGuLTOWSRxZoQeQouzlCS8a27bwXf1n_xGLF1O3PH874hpfv-GyIV3e6RiLRIVPag"
 }
