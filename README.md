@@ -147,9 +147,18 @@ Uma collection de requisições à API foi adicionada no projeto, usando o Thund
 - Execute as requisições para testar os endpoints da API.
 - Alguns loggers úteis foram deixados comentados no Service e no Controller para facilitar debug
 
+ ```bash
+http://localhost:8080/health
+```
 ![alt text](img/image.png)
+ ```bash
+localhost:8080/api/products/{id}
+```
 ![alt text](img/image-1.png)
 ![alt text](img/image-2.png)
+ ```bash
+localhost:8080/api/products
+```
 ![alt text](img/image-3.png)
 
 ### Para rodar em outro ambiente
