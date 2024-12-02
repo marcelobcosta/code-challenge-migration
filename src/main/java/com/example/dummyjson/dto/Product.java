@@ -1,15 +1,20 @@
 package com.example.dummyjson.dto;
 
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 
 public class Product {
 
+    @Min(0L)
+    @Max(999L)
     @NotNull
     private Long id;
 
     @NotNull
     private String title;
 
+    @NotNull
     private String description;
 
     @NotNull
